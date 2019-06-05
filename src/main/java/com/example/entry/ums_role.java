@@ -1,11 +1,22 @@
 package com.example.entry;
 
+import java.math.BigInteger;
+import java.util.Date;
+
 public class ums_role {
-    public String getId() {
+    private BigInteger id;
+    private String name;
+    private String description;
+    private Integer admin_count;
+    private Date create_time;
+    private Integer status;
+    private Integer sort;
+
+    public BigInteger getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(BigInteger id) {
         this.id = id;
     }
 
@@ -25,42 +36,35 @@ public class ums_role {
         this.description = description;
     }
 
-    public String getAdmin_count() {
+    public Integer getAdmin_count() {
         return admin_count;
     }
 
-    public void setAdmin_count(String admin_count) {
+    public void setAdmin_count(Integer admin_count) {
         this.admin_count = admin_count;
     }
 
-    public String getCreate_time() {
+    public Date getCreate_time() {
         return create_time;
     }
 
-    public void setCreate_time(String create_time) {
+    public void setCreate_time(Date create_time) {
         this.create_time = create_time;
     }
 
-    public String getStatus() {
+    public Integer getStatus() {
         return status;
     }
 
-    public void setStatus(String status) {
+    public void setStatus(Integer status) {
         this.status = status;
     }
 
-    public String getSort() {
+    public Integer getSort() {
         return sort;
     }
 
-    public void setSort(String sort) {
+    public void setSort(Integer sort) {
         this.sort = sort;
     }
-    private String id;
-   private String name;
-   private String description;
-   private String admin_count;
-   private String create_time;
-   private String status;
-   private String sort;
 }
