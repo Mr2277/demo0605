@@ -18,8 +18,8 @@ public class controller1 {
     private service1 ser1;
     @RequestMapping("method1")
     public String method1(){
+        System.out.println(System.currentTimeMillis());
         List<ums_role> list=ser1.findAll();
-
         String json= JSONArray.toJSONString(list);
         return json;
     }
