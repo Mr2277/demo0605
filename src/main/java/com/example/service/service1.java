@@ -6,4 +6,5 @@ import java.util.List;
 
 public interface service1 {
   List<ums_role> findAll();
+  String testRedis();
 }

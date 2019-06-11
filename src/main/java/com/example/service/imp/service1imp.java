@@ -16,4 +16,9 @@ public class service1imp implements service1 {
 
         return d1.method1();
     }
+
+    @Override
+    public String testRedis() {
+        return d1.testRedis();
+    }
 }

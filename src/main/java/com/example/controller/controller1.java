@@ -23,4 +23,8 @@ public class controller1 {
         String json= JSONArray.toJSONString(list);
         return json;
     }
+    @RequestMapping("method2")
+    public String method2(){
+        return  ser1.testRedis();
+    }
 }

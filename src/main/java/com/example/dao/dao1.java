@@ -2,12 +2,14 @@ package com.example.dao;
 
 import com.example.entry.ums_role;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
 import java.util.concurrent.locks.ReentrantReadWriteLock;
@@ -17,6 +19,8 @@ import java.util.concurrent.locks.ReentrantReadWriteLock.ReadLock;
 public class dao1 {
     @Autowired
     private JdbcTemplate jdbcTemplate;
+    @Autowired
+    private StringRedisTemplate redisTemplate;
     private ReentrantReadWriteLock lock=new ReentrantReadWriteLock();
 
     private int count;
@@ -24,12 +28,22 @@ public class dao1 {
     private List<ums_role>list=new ArrayList<>();
 
     public List<ums_role> method1(){
-        lock.writeLock().lock();
+        //lock.writeLock().lock();
         //synchronized (object) {
             list = jdbcTemplate.query("select * from ums_role", new BeanPropertyRowMapper<>(ums_role.class));
-            System.out.println(count++);
-            lock.writeLock().unlock();
+            //System.out.println(count++);
+          //  lock.writeLock().unlock();
         //}
         return list;
+    }
+    public String testRedis(){
+        //redisTemplate.opsForValue().set("B","b",10, TimeUnit.SECONDS);
+        Boolean bool=redisTemplate.opsForValue().setIfAbsent("lock","lock");
+        //redisTemplate.opsForValue().setIfPresent()
+        if(bool){
+            System.out.println(count++);
+        }
+        redisTemplate.delete("lock");
+        return bool.toString();
     }
 }
