@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
@@ -22,19 +23,16 @@ public class dao1 {
     @Autowired
     private StringRedisTemplate redisTemplate;
     private ReentrantReadWriteLock lock=new ReentrantReadWriteLock();
-
+    private ReentrantLock reentrantLock=new ReentrantLock();
     private int count;
     private Object object=new Object();
     private List<ums_role>list=new ArrayList<>();
-
+   // @Async
     public List<ums_role> method1(){
-        //lock.writeLock().lock();
-        //synchronized (object) {
+            //reentrantLock.lock();
             list = jdbcTemplate.query("select * from ums_role", new BeanPropertyRowMapper<>(ums_role.class));
-            //System.out.println(count++);
-          //  lock.writeLock().unlock();
-        //}
-        return list;
+           // reentrantLock.unlock();
+            return list;
     }
     public String testRedis(){
         //redisTemplate.opsForValue().set("B","b",10, TimeUnit.SECONDS);
