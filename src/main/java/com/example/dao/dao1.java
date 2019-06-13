@@ -6,10 +6,12 @@ import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.scheduling.annotation.Async;
+import org.springframework.scheduling.annotation.AsyncResult;
 import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.Future;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
@@ -43,5 +45,10 @@ public class dao1 {
         }
         redisTemplate.delete("lock");
         return bool.toString();
+    }
+    @Async
+    public Future<List<ums_role>> findmethod7(){
+        list=jdbcTemplate.query("select * from ums_role", new BeanPropertyRowMapper<>(ums_role.class));
+        return new AsyncResult<List<ums_role>>(list);
     }
 }

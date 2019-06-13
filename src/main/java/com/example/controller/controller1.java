@@ -11,12 +11,15 @@ import org.springframework.scheduling.annotation.Async;
 import org.springframework.scheduling.annotation.AsyncResult;
 
 import org.springframework.util.concurrent.ListenableFuture;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ExecutionException;
+import java.util.concurrent.Future;
 
 
 @RestController
@@ -41,7 +44,7 @@ public class controller1 {
         ser1.testTaskExecutor();
     }
     @RequestMapping("method4")
-    @Async
+
     public String method4() throws ExecutionException, InterruptedException {
         //List<ums_role> list=ser1.findAllFromTaskExecutor();
         //String json= JSONArray.toJSONString(list);
@@ -55,4 +58,20 @@ public class controller1 {
         System.out.println(completableFuture.get());
         return "json";
     }
+    @RequestMapping("method6")
+    public String method6() throws ExecutionException, InterruptedException {
+        Future<String>future=ser1.method6();
+        String str=future.get();
+        System.out.println(str);
+        return str;
+    }
+    @RequestMapping("method7")
+    public String method7() throws ExecutionException, InterruptedException {
+        //List<ums_role>list=new ArrayList<>();
+        //list=ser1.findAllmethod7();
+        List<ums_role>list=ser1.findAllmethod7();
+        String json=JSONArray.toJSONString(list);
+        return json;
+    }
+
 }

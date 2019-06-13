@@ -16,6 +16,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.Executor;
+import java.util.concurrent.Future;
 
 @Service
 public class service1imp implements service1 {
@@ -50,6 +51,21 @@ public class service1imp implements service1 {
         //List<ums_role>list=listenableFuture.get();
         //System.out.println(list.size());
         return d1.method1();
+    }
+
+    @Override
+    @Async
+
+    public Future<String> method6() {
+
+        return new AsyncResult<String>("method6");
+    }
+
+    @Override
+    public List<ums_role> findAllmethod7() throws ExecutionException, InterruptedException {
+        Future<List<ums_role>>future=d1.findmethod7();
+        List<ums_role>list=future.get();
+        return list;
     }
 
 }

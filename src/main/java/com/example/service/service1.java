@@ -5,10 +5,13 @@ import org.springframework.util.concurrent.ListenableFuture;
 
 import java.util.List;
 import java.util.concurrent.ExecutionException;
+import java.util.concurrent.Future;
 
 public interface service1 {
   List<ums_role> findAll();
   String testRedis();
   void testTaskExecutor();
   List<ums_role>findAllFromTaskExecutor() throws ExecutionException, InterruptedException;
+  Future<String>method6();
+  List<ums_role>findAllmethod7() throws ExecutionException, InterruptedException;
 }
