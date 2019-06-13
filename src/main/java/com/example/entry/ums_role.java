@@ -1,9 +1,10 @@
 package com.example.entry;
 
+import java.io.Serializable;
 import java.math.BigInteger;
 import java.util.Date;
 
-public class ums_role {
+public class ums_role implements Serializable {
     private BigInteger id;
     private String name;
     private String description;

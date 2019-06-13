@@ -7,6 +7,8 @@ import com.example.service.service1;
 
 import io.lettuce.core.internal.Futures;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.scheduling.annotation.AsyncResult;
 
@@ -29,6 +31,9 @@ public class controller1 {
     private service1 ser1;
     @Autowired
     private ExecutorConfig executorConfig;
+    @Autowired
+    @Qualifier("MyRedisTemplate")
+    private RedisTemplate myRedisTemplate;
     @RequestMapping("method1")
     public String method1(){
         List<ums_role> list=ser1.findAll();
@@ -72,6 +77,11 @@ public class controller1 {
         List<ums_role>list=ser1.findAllmethod7();
         String json=JSONArray.toJSONString(list);
         return json;
+    }
+    @RequestMapping("method8")
+    public String method8(){
+        ser1.findAllfromRedis();
+        return null;
     }
 
 }

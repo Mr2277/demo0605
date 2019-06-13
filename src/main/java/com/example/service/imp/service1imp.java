@@ -68,4 +68,10 @@ public class service1imp implements service1 {
         return list;
     }
 
+    @Override
+    public String findAllfromRedis() {
+        d1.selectFromRedis();
+        return null;
+    }
+
 }

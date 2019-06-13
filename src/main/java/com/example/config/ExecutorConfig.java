@@ -2,9 +2,15 @@ package com.example.config;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.data.redis.connection.RedisConnection;
+import org.springframework.data.redis.connection.RedisConnectionFactory;
+import org.springframework.data.redis.core.RedisTemplate;
+import org.springframework.data.redis.serializer.JdkSerializationRedisSerializer;
+import org.springframework.data.redis.serializer.StringRedisSerializer;
 import org.springframework.scheduling.annotation.EnableAsync;
 import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
 
@@ -24,7 +30,8 @@ public class ExecutorConfig {
     public int queueCapacity;
     @Value("${async.executor.thread.name.prefix}")
     public String namePrefix;
-
+    @Autowired
+    RedisConnectionFactory redisConnectionFactory;
     @Bean(name = "asyncServiceExecutor")
     public ThreadPoolTaskExecutor asyncServiceExecutor() {
         logger.info("start asyncServiceExecutor");
@@ -46,5 +53,16 @@ public class ExecutorConfig {
         executor.initialize();
         return executor;
     }
+    @Bean(name="MyRedisTemplate")
+    public RedisTemplate<String,Object>myRedisTemplate(){
+        RedisTemplate<String,Object>redisTemplate=new RedisTemplate<>();
+        redisTemplate.setKeySerializer(new StringRedisSerializer());
+        redisTemplate.setHashKeySerializer(new StringRedisSerializer());
+        redisTemplate.setHashValueSerializer(new JdkSerializationRedisSerializer());
+        redisTemplate.setValueSerializer(new JdkSerializationRedisSerializer());
+        redisTemplate.setConnectionFactory(redisConnectionFactory);
+        return redisTemplate;
+    }
+
 
 }

@@ -2,7 +2,11 @@ package com.example.dao;
 
 import com.example.entry.ums_role;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.core.StringRedisTemplate;
+import org.springframework.data.redis.serializer.Jackson2JsonRedisSerializer;
+import org.springframework.data.redis.serializer.JdkSerializationRedisSerializer;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.scheduling.annotation.Async;
@@ -24,6 +28,9 @@ public class dao1 {
     private JdbcTemplate jdbcTemplate;
     @Autowired
     private StringRedisTemplate redisTemplate;
+    @Autowired
+    @Qualifier("MyRedisTemplate")
+    private RedisTemplate myRedisTemplate;
     private ReentrantReadWriteLock lock=new ReentrantReadWriteLock();
     private ReentrantLock reentrantLock=new ReentrantLock();
     private int count;
@@ -50,5 +57,14 @@ public class dao1 {
     public Future<List<ums_role>> findmethod7(){
         list=jdbcTemplate.query("select * from ums_role", new BeanPropertyRowMapper<>(ums_role.class));
         return new AsyncResult<List<ums_role>>(list);
+    }
+    public String selectFromRedis(){
+        String sql="select * from ums_role";
+        if(!myRedisTemplate.hasKey(sql)){
+             list=jdbcTemplate.query("select * from ums_role", new BeanPropertyRowMapper<>(ums_role.class));
+             myRedisTemplate.opsForList().rightPushAll(sql,list);
+        }
+
+        return null;
     }
 }
