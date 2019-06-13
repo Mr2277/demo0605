@@ -64,7 +64,12 @@ public class dao1 {
              list=jdbcTemplate.query("select * from ums_role", new BeanPropertyRowMapper<>(ums_role.class));
              myRedisTemplate.opsForList().rightPushAll(sql,list);
         }
-
         return null;
+    }
+    public List<ums_role> readFromRedis(){
+        String key="select * from ums_role";
+        //List<ums_role>list= (List<ums_role>) myRedisTemplate.opsForValue().get(key);
+        List<ums_role>list=myRedisTemplate.opsForList().range(key,0,-1);
+        return list;
     }
 }

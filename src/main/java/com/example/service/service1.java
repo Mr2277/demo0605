@@ -15,4 +15,5 @@ public interface service1 {
   Future<String>method6();
   List<ums_role>findAllmethod7() throws ExecutionException, InterruptedException;
   String findAllfromRedis();
+  List<ums_role> readAllfromRedis();
 }

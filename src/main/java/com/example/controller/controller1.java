@@ -83,5 +83,10 @@ public class controller1 {
         ser1.findAllfromRedis();
         return null;
     }
-
+    @RequestMapping("method9")
+    public String method9(){
+        List<ums_role>list=ser1.readAllfromRedis();
+        String json=JSONArray.toJSONString(list);
+        return json;
+    }
 }

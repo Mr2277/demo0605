@@ -74,4 +74,10 @@ public class service1imp implements service1 {
         return null;
     }
 
+    @Override
+    public List<ums_role> readAllfromRedis() {
+        return d1.readFromRedis();
+
+    }
+
 }
