@@ -1,14 +1,16 @@
 package com.example.entry;
 
+import java.sql.Date;
+
 public class sale {
-    private String YMD;
+    private Date YMD;
     private String REGION;
     private String FORMATS;
     private String STORES;
     private String STORENAME;
     private String BILL;
     private String VIPID;
-    private String VIP_AGE;
+    private int VIP_AGE;
     private String VIP_SEX;
     private String SHOPID;
     private String SHOPNAME;
@@ -30,11 +32,11 @@ public class sale {
     private String VALUE_SALE;
     private String VALUE_SALE_AFTERDISC;
 
-    public String getYMD() {
+    public Date getYMD() {
         return YMD;
     }
 
-    public void setYMD(String YMD) {
+    public void setYMD(Date YMD) {
         this.YMD = YMD;
     }
 
@@ -86,11 +88,11 @@ public class sale {
         this.VIPID = VIPID;
     }
 
-    public String getVIP_AGE() {
+    public int getVIP_AGE() {
         return VIP_AGE;
     }
 
-    public void setVIP_AGE(String VIP_AGE) {
+    public void setVIP_AGE(int VIP_AGE) {
         this.VIP_AGE = VIP_AGE;
     }
 

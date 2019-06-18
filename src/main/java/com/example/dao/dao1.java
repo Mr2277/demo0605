@@ -1,6 +1,7 @@
 package com.example.dao;
 
 import com.example.entry.ums_role;
+import com.example.mapper.SaleMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.data.redis.core.RedisTemplate;
@@ -36,6 +37,8 @@ public class dao1 {
     private int count;
     private Object object=new Object();
     private List<ums_role>list=new ArrayList<>();
+    @Autowired
+    private SaleMapper saleMapper;
    // @Async
     public List<ums_role> method1(){
             //reentrantLock.lock();

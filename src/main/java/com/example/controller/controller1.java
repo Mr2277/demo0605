@@ -89,4 +89,9 @@ public class controller1 {
         String json=JSONArray.toJSONString(list);
         return json;
     }
+    @RequestMapping("method10")
+    public String method10(){
+
+        return null;
+    }
 }

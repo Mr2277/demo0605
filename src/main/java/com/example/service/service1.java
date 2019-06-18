@@ -1,7 +1,6 @@
 package com.example.service;
 
 import com.example.entry.ums_role;
-import org.springframework.util.concurrent.ListenableFuture;
 
 import java.util.List;
 import java.util.concurrent.ExecutionException;
@@ -16,4 +15,5 @@ public interface service1 {
   List<ums_role>findAllmethod7() throws ExecutionException, InterruptedException;
   String findAllfromRedis();
   List<ums_role> readAllfromRedis();
+  List<ums_role>findUmsFromMybatis();
 }

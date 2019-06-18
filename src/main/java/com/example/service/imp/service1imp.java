@@ -80,4 +80,9 @@ public class service1imp implements service1 {
 
     }
 
+    @Override
+    public List<ums_role> findUmsFromMybatis() {
+        return null;
+    }
+
 }
