@@ -103,5 +103,11 @@ public class controller1 {
         String json=JSONArray.toJSONString(list);
         return json;
     }
+    @RequestMapping("method12")
+    public String method12(@RequestParam("BILL")String BILL){
+        List<sale>list=ser1.findSaleByBillFromMybatis(BILL);
+        String json=JSONArray.toJSONString(list);
+        return json;
 
+    }
 }

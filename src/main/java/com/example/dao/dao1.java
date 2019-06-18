@@ -93,9 +93,11 @@ public class dao1 {
             myRedisTemplate.opsForList().rightPush(key,list);
         }
         else{
-            System.out.println("fff");
             list=myRedisTemplate.opsForList().range(key,0,-1);
         }
         return list;
+    }
+    public List<sale>selectSaleFromMybatis(String BILL){
+        return saleMapper.getSaleFromMybatis(BILL);
     }
 }
