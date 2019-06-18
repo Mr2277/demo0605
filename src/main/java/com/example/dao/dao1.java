@@ -85,5 +85,17 @@ public class dao1 {
     public List<sale>selectAllByBill(String BILL){
         return saleMapper.getSaleFromMybatis(BILL);
     }
-
+    public List<sale>selectSaleFromRedis(String BILL){
+        String key=String.format("select * from sale_final where BILL=%s",BILL);
+        List<sale>list=new ArrayList<>();
+        if(!myRedisTemplate.hasKey(key)){
+            list=saleMapper.getSaleFromMybatis(BILL);
+            myRedisTemplate.opsForList().rightPush(key,list);
+        }
+        else{
+            System.out.println("fff");
+            list=myRedisTemplate.opsForList().range(key,0,-1);
+        }
+        return list;
+    }
 }

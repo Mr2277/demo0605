@@ -89,7 +89,7 @@ public class service1imp implements service1 {
     @Override
     public List<sale> findByBill(String BILL) {
 
-        return d1.selectAllByBill(BILL);
+        return d1.selectSaleFromRedis(BILL);
     }
 
 }

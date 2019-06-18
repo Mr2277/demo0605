@@ -1,8 +1,9 @@
 package com.example.entry;
 
+import java.io.Serializable;
 import java.sql.Date;
 
-public class sale {
+public class sale implements Serializable {
     private Date YMD;
     private String REGION;
     private String FORMATS;
