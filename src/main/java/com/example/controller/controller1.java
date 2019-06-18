@@ -91,7 +91,8 @@ public class controller1 {
     }
     @RequestMapping("method10")
     public String method10(){
-
-        return null;
+        List<ums_role>list=ser1.findUmsFromMybatis();
+        String json=JSONArray.toJSONString(list);
+        return json;
     }
 }

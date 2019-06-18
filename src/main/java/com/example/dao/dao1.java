@@ -38,7 +38,7 @@ public class dao1 {
     private Object object=new Object();
     private List<ums_role>list=new ArrayList<>();
     @Autowired
-    private SaleMapper saleMapper;
+    SaleMapper saleMapper;
    // @Async
     public List<ums_role> method1(){
             //reentrantLock.lock();
@@ -73,6 +73,12 @@ public class dao1 {
         String key="select * from ums_role";
         //List<ums_role>list= (List<ums_role>) myRedisTemplate.opsForValue().get(key);
         List<ums_role>list=myRedisTemplate.opsForList().range(key,0,-1);
+        return list;
+    }
+    public List<ums_role>method9(){
+       // saleMapper.getumsFromMybatis();
+        List<ums_role>list=saleMapper.getumsFromMybatis();
+        //System.out.println(list.size());
         return list;
     }
 }
