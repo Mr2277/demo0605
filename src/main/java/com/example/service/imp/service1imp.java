@@ -1,6 +1,7 @@
 package com.example.service.imp;
 
 import com.example.dao.dao1;
+import com.example.entry.sale;
 import com.example.entry.ums_role;
 import com.example.service.service1;
 import org.slf4j.LoggerFactory;
@@ -83,6 +84,12 @@ public class service1imp implements service1 {
     @Override
     public List<ums_role> findUmsFromMybatis() {
         return d1.method9();
+    }
+
+    @Override
+    public List<sale> findByBill(String BILL) {
+
+        return d1.selectAllByBill(BILL);
     }
 
 }

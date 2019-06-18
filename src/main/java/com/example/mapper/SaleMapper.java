@@ -1,4 +1,5 @@
 package com.example.mapper;
+import com.example.entry.sale;
 import com.example.entry.ums_role;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Result;
@@ -20,4 +21,6 @@ public interface SaleMapper {
             @Result(property = "sort",column = "sort")
     })
     List<ums_role> getumsFromMybatis();
+    @Select("select * from sale_final where BILL =#{BILL}")
+    List<sale>getSaleFromMybatis(String BILL);
 }

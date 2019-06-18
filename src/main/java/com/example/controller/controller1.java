@@ -2,6 +2,7 @@ package com.example.controller;
 
 import com.alibaba.fastjson.JSONArray;
 import com.example.config.ExecutorConfig;
+import com.example.entry.sale;
 import com.example.entry.ums_role;
 import com.example.service.service1;
 
@@ -15,6 +16,7 @@ import org.springframework.scheduling.annotation.AsyncResult;
 import org.springframework.util.concurrent.ListenableFuture;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.ArrayList;
@@ -92,6 +94,12 @@ public class controller1 {
     @RequestMapping("method10")
     public String method10(){
         List<ums_role>list=ser1.findUmsFromMybatis();
+        String json=JSONArray.toJSONString(list);
+        return json;
+    }
+    @RequestMapping("method11")
+    public String method11(@RequestParam("BILL")String BILL){
+        List<sale>list=ser1.findByBill(BILL);
         String json=JSONArray.toJSONString(list);
         return json;
     }

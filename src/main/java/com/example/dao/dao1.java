@@ -1,5 +1,6 @@
 package com.example.dao;
 
+import com.example.entry.sale;
 import com.example.entry.ums_role;
 import com.example.mapper.SaleMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -81,4 +82,8 @@ public class dao1 {
         //System.out.println(list.size());
         return list;
     }
+    public List<sale>selectAllByBill(String BILL){
+        return saleMapper.getSaleFromMybatis(BILL);
+    }
+
 }

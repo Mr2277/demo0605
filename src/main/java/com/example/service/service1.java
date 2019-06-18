@@ -1,5 +1,6 @@
 package com.example.service;
 
+import com.example.entry.sale;
 import com.example.entry.ums_role;
 
 import java.util.List;
@@ -16,4 +17,5 @@ public interface service1 {
   String findAllfromRedis();
   List<ums_role> readAllfromRedis();
   List<ums_role>findUmsFromMybatis();
+  List<sale>findByBill(String BILL);
 }
