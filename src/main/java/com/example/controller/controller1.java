@@ -110,4 +110,17 @@ public class controller1 {
         return json;
 
     }
+    @RequestMapping("method13")
+    public String method13(){
+        List<ums_role>list=ser1.findUmsFromMybatis();
+
+        ser1.testMongo(list);
+        return null;
+    }
+    @RequestMapping("method14")
+    public String method14(){
+        List<ums_role>list=ser1.findAllUmaroleFromMongo();
+        String json=JSONArray.toJSONString(list);
+        return json;
+    }
 }

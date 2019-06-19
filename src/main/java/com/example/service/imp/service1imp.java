@@ -97,4 +97,14 @@ public class service1imp implements service1 {
         return d1.selectSaleFromMybatis(BILL);
     }
 
+    @Override
+    public void testMongo(List<ums_role>list) {
+       d1.curdMongo(list);
+    }
+
+    @Override
+    public List<ums_role> findAllUmaroleFromMongo() {
+        return d1.selectAllFromMongo();
+    }
+
 }

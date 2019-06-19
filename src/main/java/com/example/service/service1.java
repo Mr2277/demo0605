@@ -19,4 +19,6 @@ public interface service1 {
   List<ums_role>findUmsFromMybatis();
   List<sale>findByBill(String BILL);
   List<sale>findSaleByBillFromMybatis(String BILL);
+  void testMongo(List<ums_role>list);
+  List<ums_role>findAllUmaroleFromMongo();
 }

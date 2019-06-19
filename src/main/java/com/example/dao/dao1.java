@@ -5,6 +5,9 @@ import com.example.entry.ums_role;
 import com.example.mapper.SaleMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.data.mongodb.core.MongoTemplate;
+import org.springframework.data.mongodb.core.query.Criteria;
+import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.data.redis.serializer.Jackson2JsonRedisSerializer;
@@ -23,6 +26,7 @@ import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
 import java.util.concurrent.locks.ReentrantReadWriteLock;
 import java.util.concurrent.locks.ReentrantReadWriteLock.ReadLock;
+import org.springframework.data.mongodb.core.query.Criteria;
 
 @Repository
 public class dao1 {
@@ -40,6 +44,8 @@ public class dao1 {
     private List<ums_role>list=new ArrayList<>();
     @Autowired
     SaleMapper saleMapper;
+    @Autowired
+    private MongoTemplate  mongoTemplate;
    // @Async
     public List<ums_role> method1(){
             //reentrantLock.lock();
@@ -100,4 +106,18 @@ public class dao1 {
     public List<sale>selectSaleFromMybatis(String BILL){
         return saleMapper.getSaleFromMybatis(BILL);
     }
+    public void curdMongo(List<ums_role>list){
+        System.out.println(list.size());
+          for(ums_role key:list){
+              mongoTemplate.save(key,"demo0605");
+          }
+    }
+    public List<ums_role> selectAllFromMongo(){
+        //Query query=new Query(Criteria.)
+      List<ums_role>list= mongoTemplate.findAll(com.example.entry.ums_role.class,"demo0605");
+
+      System.out.println(list.size());
+      return list;
+    }
+
 }
