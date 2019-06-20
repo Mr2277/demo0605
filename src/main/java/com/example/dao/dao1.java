@@ -107,7 +107,6 @@ public class dao1 {
         return saleMapper.getSaleFromMybatis(BILL);
     }
     public void curdMongo(List<ums_role>list){
-        System.out.println(list.size());
           for(ums_role key:list){
               mongoTemplate.save(key,"demo0605");
           }
@@ -116,7 +115,6 @@ public class dao1 {
         //Query query=new Query(Criteria.)
       List<ums_role>list= mongoTemplate.findAll(com.example.entry.ums_role.class,"demo0605");
 
-      System.out.println(list.size());
       return list;
     }
 

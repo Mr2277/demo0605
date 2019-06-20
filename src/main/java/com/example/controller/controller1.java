@@ -10,6 +10,7 @@ import io.lettuce.core.internal.Futures;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.data.redis.core.RedisTemplate;
+import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.scheduling.annotation.AsyncResult;
 
@@ -36,6 +37,8 @@ public class controller1 {
     @Autowired
     @Qualifier("MyRedisTemplate")
     private RedisTemplate myRedisTemplate;
+    @Autowired
+    private StringRedisTemplate stringRedisTemplate;
     @RequestMapping("method1")
     public String method1(){
         List<ums_role> list=ser1.findAll();
@@ -122,5 +125,9 @@ public class controller1 {
         List<ums_role>list=ser1.findAllUmaroleFromMongo();
         String json=JSONArray.toJSONString(list);
         return json;
+    }
+    @RequestMapping("method15")
+    public String method15(){
+       return  stringRedisTemplate.opsForValue().get("A");
     }
 }
