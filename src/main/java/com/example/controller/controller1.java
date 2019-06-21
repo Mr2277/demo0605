@@ -130,4 +130,8 @@ public class controller1 {
     public String method15(){
        return  stringRedisTemplate.opsForValue().get("A");
     }
+    @RequestMapping("method16")
+    public String method16(){
+        return stringRedisTemplate.opsForValue().get("A");
+    }
 }
